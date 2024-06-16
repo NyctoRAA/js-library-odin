@@ -18,31 +18,243 @@ main {
 .sidebar {
     background-color: lightblue;
     grid-area: sidebar;
+    padding: 20px;
 }
 
 .stats-title {
     display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#stats-par {
+    font-size: 2rem;
+}
+
+.stats {
+    font-size: 20px;
+}
+
+.new-book-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    width: 400px;
+    height: 20px;
+}
+
+.container {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 2rem;
 }
 
 .content {
-    grid-area: content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.card {
+    border: 2px solid black;
+    min-width: 250px;
+    border-radius: 10px;
+}
+
+.book-title {
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.card p {
+    margin: 10px;
+}
+
+.book-details-container {
+    padding: 1em;
+}
+
+.author {
+    font-style: italic;
+    font-size: 18px;
+}
+
+.category-par {
+    font-size: 18px;
+}
+
+.toggle-read-container {
+    display: flex;
+    gap: 1em;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.toggle-read-btn {
+    height: 25px;
+    width: 60px;
+    border: none;
+    border-radius: 10px;
+}
+
+.green {
+    background-color: greenyellow;
+}
+
+.red {
+    background-color: lightcoral;
+}
+
+.delete-btn-container {
+    text-align: center;
+}
+
+.delete-book-btn {
+    background-color: lightcoral;
+    margin-bottom: 5px;
+    width: 90%;
+    height: 30px;
+    border: 2px dashed black;
+    border-radius: 10px;
+}
+
+.delete-book-btn:hover, .toggle-read-btn:hover {
+    opacity: 0.8;
 }
 
 .new-book-dialog {
     display: none;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    margin: 10vh auto;
+    /* min-width: 350px; */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 dialog[open] {
     display: flex;
 }
 
-/* dialog:not([open]) {
-    display: none !important;
-} */
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1rem 0;
+    padding: 1rem 2.5rem;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+}
 
-.new-book-btn {
+.dialog-container h2 {
+    font-size: 2.5rem;
+}
+
+.close-modal-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    background-color: lightcoral;
+    font-weight: bolder;
+    color: white;
+}
+
+.close-modal-btn:hover {
+    opacity: 0.7;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    width: 100%;
+}
+
+.form-label-title {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.form-section input {
+    border-radius: 5px;
+}
+
+.form-section input[type="text"], #category {
+    padding: 0.25em;
+    height: 40px;
+    /* width: 100%; */
+    min-width: 300px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form-section input[type="text"] {
+    border: 2px solid lightblue;
+}
+
+#category {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.radio-container {
+    display: flex;
+    gap: 1em;
+}
+
+.radio-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+}
+
+fieldset {
+    border: none;
+}
+
+.add-btn-container {
+    width: 100%;
+}
+
+.add-book-btn {
+    width: 100%;
+    height: 40px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.add-book-btn:hover {
+    opacity: 0.9;
     cursor: pointer;
 }
 
-
-
+button {
+      font-weight: bolder;
+}
