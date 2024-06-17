@@ -21,7 +21,6 @@ function Book(title, authorFirstName, authorLastName, category, readStatus) {
 }
 
 function AddBookToLibrary(book) {
-    // let book = new Book(title, authorFirstName, authorLastName, category, readStatus);
     myLibrary.push(book);
     updateStats();
     renderBook(book);
@@ -50,6 +49,20 @@ function toggleRead(book, readStatusPar, button) {
         unreadCounter--;
     }
     updateStats();
+}
+
+function deleteBook(card, book) {
+    cardContainer.removeChild(card);
+    const index = myLibrary.indexOf(book);
+    if (index > -1) {
+        myLibrary.splice(index, 1);
+        if (book.readStatus === "Read") {
+            readCounter--;
+        } else {
+            unreadCounter--;
+        }
+        updateStats();
+    }
 }
 
 function renderBook(book) {
@@ -119,19 +132,6 @@ function renderBook(book) {
     deleteBtnContainer.appendChild(deleteBookBtn);
 }
 
-function deleteBook(card, book) {
-    cardContainer.removeChild(card);
-    const index = myLibrary.indexOf(book);
-    if (index > -1) {
-        myLibrary.splice(index, 1);
-        if (book.readStatus === "Read") {
-            readCounter--;
-        } else {
-            unreadCounter--;
-        }
-        updateStats();
-    }
-}
 
 // Button event listeners
 newBookBtn.addEventListener('click', () => myModal.showModal());
