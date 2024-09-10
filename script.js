@@ -12,12 +12,22 @@ let unreadCounter = 0;
 let readCounter = 0;
 const myLibrary = [];
 
-function Book(title, authorFirstName, authorLastName, category, readStatus) {
-    this.title = title;
-    this.authorFirstName = authorFirstName;
-    this.authorLastName = authorLastName;
-    this.category = category;
-    this.readStatus = readStatus;
+// function Book(title, authorFirstName, authorLastName, category, readStatus) {
+//     this.title = title;
+//     this.authorFirstName = authorFirstName;
+//     this.authorLastName = authorLastName;
+//     this.category = category;
+//     this.readStatus = readStatus;
+// }
+
+class Book {
+    constructor(title, authorFirstName, authorLastName, category, readStatus) {
+        this.title = title;
+        this.authorFirstName = authorFirstName;
+        this.authorLastName = authorLastName;
+        this.category = category;
+        this.readStatus = readStatus;
+    }
 }
 
 function AddBookToLibrary(book) {
