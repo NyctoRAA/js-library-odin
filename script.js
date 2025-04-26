@@ -3,6 +3,7 @@ const newBookBtn = document.querySelector(".new-book-btn");
 const addBookBtn = document.querySelector(".add-book-btn");
 const closeModalBtn = document.querySelector(".close-modal-btn");
 const myModal = document.querySelector(".new-book-dialog");
+const form = document.querySelector(".add-book-form");
 const cardContainer = document.querySelector(".content");
 const totalBooksStatsPar = document.querySelector(".total-books-stats");
 const readStatsPar = document.querySelector(".read-stats");
@@ -11,15 +12,6 @@ const unreadStatsPar = document.querySelector(".unread-stats");
 let unreadCounter = 0;
 let readCounter = 0;
 const myLibrary = [];
-
-// function Book(title, authorFirstName, authorLastName, category, readStatus) {
-//     this.title = title;
-//     this.authorFirstName = authorFirstName;
-//     this.authorLastName = authorLastName;
-//     this.category = category;
-//     this.readStatus = readStatus;
-// }
-
 class Book {
     constructor(title, authorFirstName, authorLastName, category, readStatus) {
         this.title = title;
@@ -31,9 +23,13 @@ class Book {
 }
 
 function AddBookToLibrary(book) {
-    myLibrary.push(book);
-    updateStats();
-    renderBook(book);
+    if (!form.checkValidity()) {
+        return;
+    } else {   
+        myLibrary.push(book);
+        updateStats();
+        renderBook(book);
+    }
 }
 
 function updateStats() {
@@ -144,35 +140,61 @@ function renderBook(book) {
 
 
 // Button event listeners
-newBookBtn.addEventListener('click', () => myModal.showModal());
+newBookBtn.addEventListener('click', () => {
+    myModal.style.display = "flex";
+    myModal.showModal();
+    
+});
 
-closeModalBtn.addEventListener('click', () => myModal.close());
+closeModalBtn.addEventListener('click', () => {
+    myModal.style.display = "none";
+    myModal.close()
+});
 
 window.addEventListener('click', function(event) {
     if (event.target == myModal) {
       myModal.close();
+      myModal.style.display = "none";
     }
 })
 
-addBookBtn.addEventListener('click', () => {
-    const titleInput = document.querySelector("#title").value;
-    const authorFirstNameInput = document.querySelector("#author-first").value;
-    const authorLastNameInput = document.querySelector("#author-last").value;
-    const selectInput = document.querySelector("#category").value;
-    const readInput = document.querySelector("#read");
-    const unreadInput = document.querySelector("#unread");
+addBookBtn.addEventListener('click', (event) => {
+    event.preventDefault();
 
-    let readStatus = "";
-    if(readInput.checked) {
-        readStatus = "Read";
-        readCounter++;
-    } else if (unreadInput.checked) {
-        readStatus = "Unread";
-        unreadCounter++;
+    if (!form.checkValidity()) {
+        return;
+    } else {
+        const titleInput = document.querySelector("#title").value;
+        const authorFirstNameInput = document.querySelector("#author-first").value;
+        const authorLastNameInput = document.querySelector("#author-last").value;
+        const selectInput = document.querySelector("#category").value;
+        const readInput = document.querySelector("#read");
+        const unreadInput = document.querySelector("#unread");
+    
+        let readStatus = "";
+        if(readInput.checked) {
+            readStatus = "Read";
+            readCounter++;
+        } else if (unreadInput.checked) {
+            readStatus = "Unread";
+            unreadCounter++;
+        };
+    
+        const newBook = new Book(titleInput, authorFirstNameInput, authorLastNameInput, selectInput, readStatus);
+        AddBookToLibrary(newBook);
+        
+        myModal.close();
+        myModal.style.display = "none";
+    };
+});
+
+// Form validation
+
+form.addEventListener("submit", (event) => {
+    if (!form.checkValidity()) {
+        event.preventDefault();
+    } else {
+        document.querySelector(".new-book-dialog").close();
     }
-
-    const newBook = new Book(titleInput, authorFirstNameInput, authorLastNameInput, selectInput, readStatus);
-    AddBookToLibrary(newBook);
-    myModal.close();
 });
 

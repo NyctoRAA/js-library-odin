@@ -255,3 +255,7 @@ fieldset {
 button {
       font-weight: bolder;
 }
+
+button:hover {
+    cursor: pointer;
+}
