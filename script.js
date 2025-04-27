@@ -9,6 +9,13 @@ const totalBooksStatsPar = document.querySelector(".total-books-stats");
 const readStatsPar = document.querySelector(".read-stats");
 const unreadStatsPar = document.querySelector(".unread-stats");
 
+const titleInput = document.querySelector("#title").value;
+const authorFirstNameInput = document.querySelector("#author-first").value;
+const authorLastNameInput = document.querySelector("#author-last").value;
+const selectInput = document.querySelector("#category").value;
+const readInput = document.querySelector("#read");
+const unreadInput = document.querySelector("#unread");
+
 let unreadCounter = 0;
 let readCounter = 0;
 const myLibrary = [];
@@ -159,18 +166,13 @@ window.addEventListener('click', function(event) {
 })
 
 addBookBtn.addEventListener('click', (event) => {
+    validateInputs();
+    
     event.preventDefault();
 
     if (!form.checkValidity()) {
         return;
     } else {
-        const titleInput = document.querySelector("#title").value;
-        const authorFirstNameInput = document.querySelector("#author-first").value;
-        const authorLastNameInput = document.querySelector("#author-last").value;
-        const selectInput = document.querySelector("#category").value;
-        const readInput = document.querySelector("#read");
-        const unreadInput = document.querySelector("#unread");
-    
         let readStatus = "";
         if(readInput.checked) {
             readStatus = "Read";
@@ -198,3 +200,35 @@ form.addEventListener("submit", (event) => {
     }
 });
 
+// Inputs Validation
+
+
+
+
+function validateInputs() {
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        const errorSpan = document.querySelector(`.error-span[data-error-for="${input.id}`);
+
+        if (input.validity.valueMissing) {
+            errorSpan.textContent = "This field is required";
+            input.setCustomValidity("This field is required");
+        } else {
+            errorSpan.textContent = "";
+            input.setCustomValidity("");
+        };
+
+        input.addEventListener("input", () => {
+            input.setCustomValidity("");
+            
+            if (input.validity.valueMissing) {
+                errorSpan.textContent = "This field is required";
+                input.setCustomValidity("This field is required");
+            } else {
+                errorSpan.textContent = "";
+                input.setCustomValidity("");
+            };
+        });
+    });
+}
