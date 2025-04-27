@@ -10,8 +10,7 @@ main {
     display: grid;
     grid-template-columns: 2fr 6fr;
     grid-template-areas: 
-    "sidebar content"
-    ;
+    "sidebar content";
     height: 100vh;
 }
 
@@ -211,6 +210,18 @@ form {
 
 .form-section input[type="text"] {
     border: 2px solid lightblue;
+}
+
+.form-section input[type="text"]:valid {
+    border: 2px solid green;
+}
+
+.form-section input[type="text"]:invalid {
+    border: 2px solid red;
+}
+
+.error-span {
+    color: red;
 }
 
 #category {
