@@ -196,14 +196,11 @@ form.addEventListener("submit", (event) => {
     if (!form.checkValidity()) {
         event.preventDefault();
     } else {
-        document.querySelector(".new-book-dialog").close();
+        myModal.close();
     }
 });
 
 // Inputs Validation
-
-
-
 
 function validateInputs() {
     const inputs = document.querySelectorAll("input");
